@@ -1,0 +1,46 @@
+body{
+	background-color: grey;
+	margin-left: 250px;
+}
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#container ul{
+	list-style: none;
+}
+
+#container ul li{
+	background-color: lightseagreen;
+	width: 200px;
+	border: 1px solid white;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	float: left;
+	font-size: 20px;
+	position: relative;
+}
+
+#container ul li:hover{
+	background-color: lightcoral;
+}
+
+#container ul ul{
+	display: none;
+}
+
+#container ul li:hover > ul{
+	display: block;
+}
+
+#container ul ul ul{
+	margin-left: 200px;
+	top: 0px;
+	position: absolute;
+}
+
+a:link{
+	text-decoration: none;
+}

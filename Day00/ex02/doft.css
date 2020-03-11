@@ -1,0 +1,165 @@
+body{
+	background-color: rgb(80, 80,80);
+}
+
+#box{
+	border-radius: 20px;
+	padding: 10px;
+	box-shadow: 5px 7px black;
+}
+
+.header{
+	position: relative;
+	margin: auto;
+	max-width: 1300px;
+	height: 200px;
+	background-color: #909090;
+}
+
+.image1{
+	position: absolute;
+	margin: left;
+	width: 150px;
+	height: 150px;
+	width: 50%;
+}
+
+.image2{
+	position: absolute;
+	right: 50px;
+	height: 225px;
+	bottom: -30px;
+}
+.image3{
+	width: 20px;
+	right: 20px;
+	position: absolute;
+	top: 5px;
+}
+
+.image4{
+	width: 20px;
+	right: 20px;
+	bottom: 5px;
+	position: absolute;
+}
+
+.body{
+	position: relative;
+	margin: auto;
+	max-width: 1250px;
+	text-align: center;
+}
+
+.leftMenu{
+	width: 100px;
+	height: 440px;
+	margin-top: 20px;
+	position: absolute;
+	background-color: #909090;
+	float: left;
+	border-radius: 20px;
+	box-shadow: 5px 7px black;
+	padding-top: 10px;
+}
+
+.left-img1{
+	width: 70px;
+	height: 18%;
+	position: absolute;
+	left: 20px;
+	top: 10px;
+}
+
+.left-img2{
+	width: 70px;
+	height: 18%;
+	position: absolute;
+	left: 17px;
+	top: 90px
+}
+
+.left-img3{
+	width: 70px;
+	height: 70px;
+	position: absolute;
+	left: 10px;
+	top: 180px;
+	border: 4px solid red;
+}
+
+.left-img4{
+	width: 70px;
+	height: 18%;
+	position: absolute;
+	left: 20px;
+	top: 270px;
+}
+
+.left-img5{
+	width: 50%;
+	height: 18%;
+	position: absolute;
+	left: 25px;
+	top: 360px;
+}
+
+.midMenu{
+	margin-left: 110px;
+	margin-top: 20px;
+	position: absolute;
+	background-color: #909090;
+	padding: 10px;
+	border-radius: 20px;
+	box-shadow: 5px 7px black;
+}
+
+.rightMenu{
+	width: 100px;
+	height: 430px;
+	margin-top: 20px;
+	position: absolute;
+	background-color: #909090;
+	text-align: center;
+	float: left;
+	margin-left: 1170px;
+	border-radius: 20px;
+	box-shadow: 5px 7px black;
+	padding-top: 10px;
+}
+
+.area {
+    margin-left: -80px;
+    border-radius: 10px;
+    text-align: left;
+    width: 500;
+    z-index: 50;
+    position: absolute;
+    height: 170;
+    background-color: #88FF89;
+    box-shadow: 10px 10px 10px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+	margin-top: 580px;
+	padding-bottom: 50px;
+	padding-left: 10px;
+	padding-right: 30px;
+	padding-top: 10px;
+}
+
+.area span {
+    text-shadow:  5px 2px 5px red;
+}
+
+.area p {
+    margin: 0 0 0 0;
+}
+
+.brick{
+    height: 50px;
+    width: 80px;
+    background-image: url(resources/brick.jpg);
+    background-repeat: repeat;
+    margin-left:10px;
+}
+
