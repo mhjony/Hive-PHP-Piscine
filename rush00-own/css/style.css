@@ -1,0 +1,55 @@
+body{
+    margin-left: 250px;
+    margin-right: 300px;
+}
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#header ul{
+    list-style: none;
+}
+
+#header ul li{
+	background-color: lightseagreen;
+	width: 200px;
+	border: 1px solid white;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	float: left;
+	font-size: 20px;
+	position: relative;
+}
+
+#header ul li:hover{
+	background-color: lightcoral;
+}
+
+#header ul ul{
+	display: none;
+}
+
+#header ul li:hover > ul{
+	display: block;
+}
+
+#header ul ul ul{
+	margin-left: 200px;
+	top: 0px;
+	position: absolute;
+}
+
+a:link{
+	text-decoration: none;
+}
+
+.container{
+    widows: 80%;
+}
+
+#header{
+    height: 100px;
+}
