@@ -1,107 +1,67 @@
 #!/usr/bin/php
 <?php
-
-	function ft_validation($str)
-	{
-		$days = array("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
-		$months = array("janvier", "Janvier", "février", "Février", "mars", "Mars", "avril", "Avril" , "mai", "Mai", "juin", "Juin", "juillet", "Juillet", "aout" , "Aout", "septembre", "Septembre", "octobre", "Octobre", "novembre", "Novembre", "décembre", "Décembre");
-
-		$tmp = preg_split("/ +/", trim($str));
-		$i = 0;
-		$count = 0;
-		while ($days[$i])
-		{
-			if (strstr($str, $days[$i]))
-			{
-				$i = 0;
-				while ($months[$i])
-				{
-					if (strstr($str, $months[$i]))
-						$count++;
-					$i++;
-				}
-			}
-			$i++;
-		}
-		echo $count;
-
-		if (substr_count($str, " ") == 4)
-			$count++;
-		if (preg_match('/^(([0-3]){1}([0-9]){1}|([1-9]){1})$/', $tmp[1]) == 1 )
-			$count++;
-		if (preg_match("/^([0-9]){4}$/", $tmp[3]) == 1 && $tmp[3] > 1969)
-			$count++;
-		$time = explode(":", "$tmp[4]");
-		if (count($time) != 3)
-			return (0);
-		if ((preg_match("/^([0-9]){2}$/", $time[0]) && $time[0] >= 0 && $time[0] < 24) &&
-			(preg_match("/^([0-9]){2}$/", $time[1]) && $time[1] >= 0 && $time[1] < 60) &&
-			(preg_match("/^([0-9]){2}$/", $time[2]) && $time[2] >= 0 && $time[2] < 60))
-			$count++;
-		if ($count == 5)
-			return (1);
-		return (0);
-	}
-
-	function replace_days($str)
-	{
-		if (preg_match('/[Ll]undi/', $str) == 1)
-			$str = str_ireplace("lundi", "Monday", $str);
-		else if ((preg_match('/[Mm]ardi/', $str) == 1))
-			$str = str_ireplace("mardi", "Tuesday", $str);
-		else if ((preg_match('/[Mm]ercredi/', $str) == 1))
-			$str = str_ireplace("mercredi", "Wednesday", $str);
-		else if ((preg_match('/[Jj]eudi/', $str) == 1))
-			$str = str_ireplace("jeudi", "Thursday", $str);
-		else if ((preg_match('/[Vv]endredi/', $str) == 1))
-			$str = str_ireplace("vendredi", "Friday", $str);
-		else if ((preg_match('/[Ss]amedi/', $str) == 1))
-			$str = str_ireplace("samedi", "Saturday", $str);
-		else if ((preg_match('/[Dd]imanche/', $str) == 1))
-			$str = str_ireplace("dimanche", "Sunday", $str);
-		return $str;
-	}
-
-	function replace_months($str)
-	{
-		if (preg_match('/[Jj]anvier/', $str) == 1)
-			$str = str_ireplace("janvier", "January", $str);
-		else if (preg_match('/[Ff]février/', $str) == 1)
-			$str = str_ireplace("février", "February", $str);
-		else if (preg_match('/[Mm]ars/', $str) == 1)
-			$str = str_ireplace("mars", "March", $str);
-		else if (preg_match('/[Aa]vril/', $str) == 1)
-			$str = str_ireplace("avril", "April", $str);
-		else if (preg_match('/[Mm]ai/', $str) == 1)
-			$str = str_ireplace("mai", "May", $str);
-		else if (preg_match('/[Jj]uin/', $str) == 1)
-			$str = str_ireplace("juin", "June", $str);
-		else if (preg_match('/[Jj]uillet/', $str) == 1)
-			$str = str_ireplace("juillet", "July", $str);
-		else if (preg_match('/[Aa]out/', $str) == 1)
-			$str = str_ireplace("aout", "August", $str);
-		else if (preg_match('/[Ss]eptembre/', $str) == 1)
-			$str = str_ireplace("septembre", "September", $str);
-		else if (preg_match('/[Oo]ctobre/', $str) == 1)
-			$str = str_ireplace("octobre", "October", $str);
-		else if (preg_match('/[Nn]ovembre/', $str) == 1)
-			$str = str_ireplace("novembre", "November", $str);
-		else if (preg_match('/[Dd]écembre/', $str) == 1)
-			$str = str_ireplace("décembre", "December", $str);
-		else if (preg_match('/[Dd]ecembre/', $str) == 1)
-			$str = str_ireplace("decembre", "December", $str);
-		return $str;
-	}
-	if ($argc == 2)
-	{
-		if (!ft_validation($argv[1]))
-		{
-			echo "Wrong Format";
-			return (0);
-		}
-		$argv[1] = replace_days($argv[1]);
-		$argv[1] = replace_months($argv[1]);
-		print ($time = strtotime($argv[1]));
-		print "\n";
-	}
+    function error()
+    {
+        echo "Wrong Format\n";
+        exit();
+    }
+    function get_key($needle, $array)
+    {
+        $key = 0;
+        foreach ($array as $elem){
+            if (in_array($needle, $elem)){
+                $key = array_search($elem, $array);
+                break;
+            }
+        }
+        return $key;
+    }
+    // if 2 argumnets proceed, else print error message
+    if($argc == 2)
+    {
+        if((substr_count($argv[1], ' ') != 4) || (substr_count($argv[1], ':') != 2))
+            error();
+        $array_key = array("dayofweek", "dd","mm", "yy","time");
+        $array_value = explode(' ', $argv[1]);
+		$input = array_combine($array_key, $array_value);
+		//print_r($input);
+		$array_key = array("hour", "min", "sec");
+		//print_r($array_key);
+		$array_value = explode(':', $input['time']);
+		//print_r($array_value);
+		$time = array_combine($array_key, $array_value);
+		//print_r($time);
+		//print_r($input);
+        $day_of_week = array("1" => "lundi", "2" => "mardi", "3" => "mercredi", "4" => "jeudi", "5" => "vendredi", "6" => "samedi", "0" => "dimanche");
+        $months = array("1" => ["janvier","Janvier"],"2" => ["février","Février","Fevrier","fevrier"],"3" => ["mars","Mars"], "4" => ["avril","Avril"],
+        "5" => ["mai","Mai"], "6" => ["juin","Juin"] , "7" => ["juillet","Juillet"], "8" => ["août","Août","Aout","aout"], "9" => ["septembre","Septembre"],
+        "10" => ["octobre","Octobre"], "11" => ["novembre","Novembre"], "12" => ["décembre","Décembre","Decembre","decembre"]);
+        // check validity on the input: day of the week, date, month, year, and time are in correct format
+        if ((preg_match("/([Ll]undi|[Mm]ardi|[Mm]ercredi|[Jj]eudi|[Vv]endredi|[Ss]amedi|[Dd]imanche)/", $input['dayofweek'])) &&
+            (preg_match('/^(([0-3]){1}([0-9]){1}|([1-9]){1})$/', $input['dd']) && $input['dd'] > 0 && $input['dd'] < 32) &&
+            (get_key($input['mm'], $months) != 0) &&
+            (preg_match('/^([0-9]){4}$/', $input['yy']) && $input['yy'] > 1969) &&
+            (preg_match('/^([0-9]){2}$/', $time['hour']) && $time['hour'] > -1 && $time['hour'] < 24) &&
+            (preg_match('/^([0-9]){2}$/', $time['min']) && $time['min'] > -1 && $time['min'] < 60) &&
+            (preg_match('/^([0-9]){2}$/', $time['sec']) && $time['sec'] > -1 && $time['sec'] < 60)){
+                $input['dayofweek'] = strtolower($input['dayofweek']);
+				$input['dayofweek'] = array_search($input['dayofweek'], $day_of_week);
+                $input['mm'] = get_key($input['mm'], $months);
+				$day_real = date('w', strtotime($input['yy']."-".$input['mm']."-".$input['dd']." ".$input['time']));
+				//echo $day_real;
+                // if the date exists and the day of the week matches to day_real proceed calculating seconds
+                if (checkdate($input['mm'], $input['dd'], $input['yy']) && $input['dayofweek'] == $day_real){
+                        date_default_timezone_set("Europe/Paris");
+                        echo strtotime($input['yy']."-".$input['mm']."-".$input['dd']." ".$input['time'])."\n";
+                }
+                else {
+                    error();
+                }
+        }
+        else
+            error();
+    }
+    else {
+        exit();
+    }
 ?>
