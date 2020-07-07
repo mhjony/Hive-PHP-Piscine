@@ -17,6 +17,7 @@
 	function ft_calculator ($str)
 	{
 		preg_match_all ("!\d+!", $str, $value);
+		//print_r($value);
 		if (strstr($str, "+"))
 			print($result = $value[0][0] + $value[0][1]);
 		else if (strstr($str, "*"))
