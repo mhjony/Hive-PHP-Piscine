@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>Calculator</title>
+    <script>
+        window.onload = function () {
+            setInterval("alert('Please, use me...')", 30000);
+        }
+        function myFunction(form) {
+            var val1 = parseInt(document.getElementById("fnum").value, 10);
+            var val2 = parseInt(document.getElementById("lnum").value, 10);
+            if (!Number.isInteger(val1) || !Number.isInteger(val2)) {
+                alert('Error :(');
+                return false;
+            }
+            if (val1 < 0 || val2 < 0) {
+                alert('Error :(');
+                return false;
+            }
+            var op = document.getElementById("operator").value;
+            var res;
+
+            if (op == "add")
+                res = val1 + val2;
+            else if (op == "sub")
+                res = val1 - val2;
+            else if (op == "mul")
+                res = val1 * val2;
+            else if (op == "div") {
+                if (val2 == 0) {
+                    res = "It's over 9000!";
+                    console.log(res);
+                    alert(res);
+                    return false;
+                }
+                else
+                    res = val1 / val2;
+            }
+            else if (op == "mod") {
+                if (val2 == 0) {
+                    res = "It's over 9000!";
+                    console.log(res);
+                    alert(res);
+                    return false;
+                }
+                else
+                    res = val1 % val2;
+            }
+            console.log(res);
+            alert(res);
+        }
+    </script>
+</head>
+
+<body>
+    <form id="form" name="form" style="margin: 5px;" onsubmit="myFunction(this)">
+        <input id="fnum" type="text" name="fnum" style="margin: 5px;" /><br />
+        <select name="op" id="operator" style="margin: 5px;">
+            <option value="add">+</option>
+            <option value="sub">-</option>
+            <option value="mul">*</option>
+            <option value="div">/</option>
+            <option value="mod">%</option>
+        </select><br />
+        <input id="lnum" type="text" name="lnum" style="margin: 5px;" /><br />
+        <button id="submit" type="submit" value="Try me!" style="margin: 5px;">Try me!</button>
+    </form>
+</body>
+
+</html>

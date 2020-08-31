@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Ballon</title>
+		<style>
+			#ballon{
+				background-color: red;
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ballon"></div>
+
+		<script>
+			  size = 200;
+			  color = ["red", "green", "blue"];
+			  colorIndex = 0;
+
+			 window.onload =  function(){
+				var ballon = document.querySelector("#ballon");
+				ballon.addEventListener("click", size_increase);
+				ballon.addEventListener("mouseleave", leave_ballon);
+			 }
+
+			  function size_increase(){
+				  size += 10;
+				  if (size > 420)
+					  size = 200;
+				if (colorIndex > 2)
+					colorIndex = 0;
+				else
+					colorIndex++;
+				ballon_magic(size, colorIndex);
+			  }
+
+			  function leave_ballon(){
+				  size -= 5;
+				  if (size < 200)
+					size = 200;
+				colorIndex--;
+				if (colorIndex < 0)
+					colorIndex = 2;
+				ballon_magic(size, colorIndex);
+			  }
+			  function ballon_magic(size, colorIndex){
+				  ballon.style.height = size + 'px';
+				  ballon.style.width = size + 'px';
+				  ballon.style.backgroundColor = color[colorIndex];
+			  }
+		</script>
+	</body>
+</html>
